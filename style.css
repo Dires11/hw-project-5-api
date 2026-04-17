@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f172a;
+  --panel: rgba(255, 255, 255, 0.08);
+  --panel-strong: rgba(255, 255, 255, 0.12);
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --accent: #38bdf8;
+  --shadow: rgba(0, 0, 0, 0.25);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+   background: linear-gradient(135deg, #020617, #0f172a);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  backdrop-filter: blur(8px);
+}
+
+.toolbar input::placeholder {
+  color: #94a3b8;
+}
+
+.status {
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 320px));
+  gap: 1.25rem;
+  justify-content: center;
+}
+
+.country-card {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px var(--shadow);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.country-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.32);
+}
+
+.country-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: #0b1220;
+}
+
+.country-info {
+  padding: 1rem 1rem 1.15rem;
+}
+
+.country-info h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.2rem;
+}
+
+.country-info p {
+  margin: 0.35rem 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.label {
+  color: var(--text);
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Countries</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Explore Countries</h1>
+      <p>Browse country data with REST Countries API</p>
+    </header>
+
+    <section class="toolbar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by country name..."
+      />
+      <select id="regionFilter">
+        <option value="all">All Regions</option>
+        <option value="africa">Africa</option>
+        <option value="americas">Americas</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
+      </select>
+    </section>
+
+    <section id="status" class="status">Loading countries...</section>
+
+    <section id="countriesGrid" class="countries-grid"></section>
+  </main>
+
+<script src="https://unpkg.com/popmotion@8.6.10/dist/popmotion.global.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
