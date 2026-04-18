@@ -8,6 +8,7 @@ const { tween, styler } = window.popmotion;
 let allCountries = [];
 
 async function fetchCountries() {
+  // Request only the fields needed for faster responses.
   const url =
     "https://restcountries.com/v3.1/all?fields=name,flags,capital,region,population";
 
@@ -19,9 +20,12 @@ async function fetchCountries() {
 
   const data = await response.json();
 
-  return data
-    .sort((a, b) => a.name.common.localeCompare(b.name.common))
-    .slice(1);
+  return (
+    data
+      // Keep UI consistent by showing countries alphabetically.
+      .sort((a, b) => a.name.common.localeCompare(b.name.common))
+      .slice(1)
+  );
 }
 
 function formatPopulation(number) {
@@ -52,6 +56,7 @@ function createCountryCard(country) {
 function animateCard(card, delay = 0) {
   const cardStyler = styler(card);
 
+  // Stagger each card animation to create a cascading reveal effect.
   setTimeout(() => {
     tween({
       from: { opacity: 0, y: 24, scale: 0.96 },
@@ -84,6 +89,7 @@ function filterCountries() {
   const searchValue = searchInput.value.trim().toLowerCase();
   const regionValue = regionFilter.value.toLowerCase();
 
+  // Combine text search and region dropdown filters.
   const filtered = allCountries.filter((country) => {
     const matchesName = country.name.common.toLowerCase().includes(searchValue);
     const matchesRegion =
@@ -102,6 +108,7 @@ async function init() {
     allCountries = await fetchCountries();
     renderCountries(allCountries);
   } catch (error) {
+    // Show a friendly message while logging details for debugging.
     console.error(error);
     statusText.textContent =
       "Failed to load country data. Please try again later.";
